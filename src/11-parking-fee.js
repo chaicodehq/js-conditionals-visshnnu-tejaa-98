@@ -34,4 +34,29 @@
  */
 export function calculateParkingFee(hours, vehicleType) {
   // Your code here
+  const firstHourFee = {
+    car: 5,
+    motorcycle: 3,
+    bus: 10
+  }
+
+  const hourlyFee = {
+    car: 3,
+    motorcycle: 2,
+    bus: 7
+  }
+
+  const capFee = {
+    car: 30,
+    motorcycle: 18,
+    bus: 60
+  }
+
+  if(hours <= 0) return -1
+  if(!firstHourFee[vehicleType]) return -1
+
+  let totalFee = ((Math.ceil(hours) - 1) * hourlyFee[vehicleType]) + firstHourFee[vehicleType]
+
+  return totalFee > capFee[vehicleType] ? capFee[vehicleType] : totalFee 
+
 }

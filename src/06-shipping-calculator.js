@@ -29,5 +29,23 @@
  * @returns {number} Shipping cost, 0 for free shipping, or -1 for invalid input
  */
 export function calculateShipping(weight, country, orderTotal) {
-  // Your code here
-}
+
+  var result = -1
+  const isDomestic = country === "US"
+  const isInternational = !isDomestic
+
+  if(weight<=0 || orderTotal<0) return result
+  
+  if(isDomestic && orderTotal > 50) return 0
+  
+  if(isInternational && orderTotal > 100) return 0
+  
+  if(weight <= 1 && isDomestic) result = 5
+  else if(weight <= 5 && isDomestic) result = 10
+  else if(weight > 5 && isDomestic) result = 15
+  else if(weight <= 1 && isInternational) result = 15
+  else if(weight <= 5 && isInternational) result = 25
+  else if(weight > 5 && isInternational) result = 40
+
+  return result
+} 

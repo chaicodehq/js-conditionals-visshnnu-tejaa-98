@@ -27,4 +27,13 @@
  */
 export function calculateTax(income) {
   // Your code here
+  if(income < 0) return 0;
+
+  let tax = 0
+
+  if(income > 10000) tax += Math.min(income - 10000, 20000) * 0.10
+  if(income > 30000) tax += Math.min(income - 30000, 40000) * 0.20
+  if(income > 70000) tax += (income - 70000) * 0.30
+
+  return tax
 }
